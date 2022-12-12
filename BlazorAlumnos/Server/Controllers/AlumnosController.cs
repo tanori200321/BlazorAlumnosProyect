@@ -1,8 +1,8 @@
-﻿using BlazorAlumnos.Server.Model.Entities;
-using BlazorAlumnos.Server.Model;
+﻿using BlazorAlumnos.Server.Model;
+using BlazorAlumnos.Server.Model.Entities;
+using BlazorAlumnos.Shared.DTOs.Alumnos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BlazorAlumnos.Shared.DTOs.Alumnos;
 
 namespace BlazorAlumnos.Server.Controllers
 {
@@ -23,7 +23,7 @@ namespace BlazorAlumnos.Server.Controllers
 
             var alumnosDto = new List<AlumnoDTO>();
 
-            foreach(var alumno in alumnos) 
+            foreach (var alumno in alumnos)
             {
                 var alumnoDto = new AlumnoDTO();
                 alumnoDto.Id = alumno.Id;

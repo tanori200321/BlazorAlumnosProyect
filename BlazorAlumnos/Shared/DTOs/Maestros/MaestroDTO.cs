@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace BlazorAlumnos.Shared.DTOs.Maestros
 {
-    internal class MaestroDTO
+    public class MaestroDTO
     {
         public int Id { get; set; }
 

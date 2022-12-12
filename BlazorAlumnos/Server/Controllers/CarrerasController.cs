@@ -57,6 +57,7 @@ namespace BlazorAlumnos.Server.Controllers
         public async Task<ActionResult> Add([FromBody] CarreraDTO carreraDto)
         {
             var carrera = new Carrera();
+            carrera.Id = carreraDto.Id;
             carrera.Nombre = carreraDto.Nombre;
 
             context.Carreras.Add(carrera);
@@ -74,7 +75,7 @@ namespace BlazorAlumnos.Server.Controllers
             {
                 return NotFound();
             }
-
+            carreraDb.Id = carreraDb.Id;
             carreraDb.Nombre = carreraDb.Nombre;
 
             context.Carreras.Update(carreraDb);
@@ -98,5 +99,5 @@ namespace BlazorAlumnos.Server.Controllers
             await context.SaveChangesAsync();
             return Ok();
         }
-    }
+    } 
 }

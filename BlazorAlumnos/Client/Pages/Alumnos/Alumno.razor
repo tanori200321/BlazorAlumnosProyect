@@ -11,14 +11,6 @@
 <EditForm Model="alumno" OnValidSubmit="OnValidSubmit">
     <DataAnnotationsValidator />
 
-    <div class="col-lg-12">
-        <div class="mb-3">
-            <label class="form-label">Matrícula</label>
-            <InputText id="Matricula" class="form-control" @bind-Value="@alumno.Matricula" />
-            <ValidationMessage For="@(() => alumno.Matricula)" />
-        </div>
-    </div>
-
      <div class="col-lg-12">
         <div class="mb-3">
            <label class="form-label">Nombre</label>
@@ -29,9 +21,25 @@
 
     <div class="col-lg-12">
         <div class="mb-3">
-            <label class="form-label">Matrícula</label>
-            <InputText id="Matricula" class="form-control" @bind-Value="@alumno.Matricula" />
-            <ValidationMessage For="@(() => alumno.Matricula)" />
+            <label class="form-label">Apellido</label>
+            <InputText id="Apellido" class="form-control" @bind-Value="@alumno.Apellido" />
+            <ValidationMessage For="@(() => alumno.Apellido)" />
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="mb-3">
+            <label class="form-label">Correo</label>
+            <InputText id="Correo" class="form-control" @bind-Value="@alumno.Correo" />
+            <ValidationMessage For="@(() => alumno.Correo)" />
+        </div>
+    </div>
+
+    <div class="col-lg-12">
+        <div class="mb-3">
+            <label class="form-label">Matricula</label>
+            <InputText id="Matricula" class="form-control" @bind-Value="@alumno.MatriculaAlumno" />
+            <ValidationMessage For="@(() => alumno.MatriculaAlumno)" />
         </div>
     </div>
 

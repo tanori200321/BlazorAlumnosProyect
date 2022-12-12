@@ -27,9 +27,10 @@ else
             <thead class="table-striped">
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Matrícula</th>
+                    <th scope="col">MatrículaAlumno</th>
                     <th scope="col">Nombre</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,8 +38,10 @@ else
                 {
                     <tr>
                         <td>@alumno.Id</td>
-                        <td>@alumno.Matricula</td>
+                        <td>@alumno.MatriculaAlumno</td>
                         <td>@alumno.Nombre</td>
+                        <td>@alumno.Apellido</td>
+                        <td>@alumno.Correo</td>
 
                         <td>
                             <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"alumno/{alumno.Id}"))>Editar</button>

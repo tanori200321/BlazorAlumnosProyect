@@ -57,6 +57,7 @@ namespace BlazorAlumnos.Server.Controllers
         public async Task<ActionResult> Add([FromBody] MateriaDTO materiaDto)
         {
             var materia = new Materia();
+            materia.Id = materiaDto.Id;
             materia.Nombre = materiaDto.Nombre;
 
             context.Materias.Add(materia);
@@ -74,7 +75,7 @@ namespace BlazorAlumnos.Server.Controllers
             {
                 return NotFound();
             }
-
+            materiaDb.Id = materiaDb.Id;
             materiaDb.Nombre = materiaDb.Nombre;
 
             context.Materias.Update(materiaDb);

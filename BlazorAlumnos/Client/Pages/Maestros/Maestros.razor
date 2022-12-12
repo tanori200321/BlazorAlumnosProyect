@@ -1,5 +1,74 @@
-﻿<h3>Maestros</h3>
+﻿@page "/maestros"
+@using BlazorAlumnos.Shared.DTOs.Maestros;
+
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<h3>Maestro</h3>
+
+<div class="row justify-content-end">
+    <div class="col-lg-3 text-end">
+        <button type="button" class="btn btn-success" @onclick=@(() => navigationManager.NavigateTo("maestro"))>Agregar</button>
+    </div>
+</div>
+
+@if (maestros == null)
+{
+    <h1>Cargando...</h1>
+}
+else if (maestros.Count == 0)
+{
+    <h1>No se encontraron Maestros registrados...</h1>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table text-center table-hover">
+            <thead class="table-striped">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">MatrículaMaestro</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var maestro in maestros)
+                {
+                    <tr>
+                        <td>@maestro.Id</td>
+                        <td>@maestro.MatriculaMaestro</td>
+                        <td>@maestro.Nombre</td>
+                        <td>@maestro.Apellido</td>
+                        <td>@maestro.Correo</td>
+
+                        <td>
+                            <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"maestro/{maestro.Id}"))>Editar</button>
+                            <button class="btn btn-danger" type="button" @onclick="@(() => Eliminar(maestro))">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 
 @code {
+    protected List<MaestroDTO> maestros;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await httpClient.GetFromJsonAsync<List<MaestroDTO>>("api/maestroz");
+        if (response != null)
+        {
+            maestros = response;
+        }
+    }
+
+    protected async Task Eliminar(MaestroDTO maestro)
+    {
+        await httpClient.DeleteAsync($"api/maestroz/{maestro.Id}");
+        maestros.Remove(maestro);
+    }
 }
