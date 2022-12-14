@@ -48,7 +48,6 @@ namespace BlazorAlumnos.Server.Controllers
             {
                 return NotFound();
             }
-
             var alumnoDto = new AlumnoDTO();
             alumnoDto.Id = alumno.Id;
             alumnoDto.Nombre = alumno.Nombre;
@@ -85,7 +84,6 @@ namespace BlazorAlumnos.Server.Controllers
             {
                 return NotFound();
             }
-
             alumnoDb.Nombre = alumnoDto.Nombre;
             alumnoDb.Apellido = alumnoDto.Apellido;
             alumnoDb.Correo = alumnoDto.Correo;
