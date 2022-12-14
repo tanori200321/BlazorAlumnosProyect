@@ -6,7 +6,7 @@ using BlazorAlumnos.Shared.DTOs.Materias;
 
 namespace BlazorAlumnos.Server.Controllers
 {
-    [ApiController, Route("api/materiaz")]
+    [ApiController, Route("api/materias")]
     public class MateriasController : ControllerBase
     {
         private readonly ApplicationDbContext context;

@@ -4,7 +4,7 @@
 
 namespace BlazorAlumnos.Server.Migrations
 {
-    public partial class Carreras : Migration
+    public partial class database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,27 +13,12 @@ namespace BlazorAlumnos.Server.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Carreras", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Maestros",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MatriculaMaestro = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Maestros", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -73,6 +58,29 @@ namespace BlazorAlumnos.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Maestros",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Correo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MatriculaMaestro = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CarreraId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Maestros", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Maestros_Carreras_CarreraId",
+                        column: x => x.CarreraId,
+                        principalTable: "Carreras",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CarreraMateria",
                 columns: table => new
                 {
@@ -105,6 +113,11 @@ namespace BlazorAlumnos.Server.Migrations
                 name: "IX_CarreraMateria_MateriasId",
                 table: "CarreraMateria",
                 column: "MateriasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Maestros_CarreraId",
+                table: "Maestros",
+                column: "CarreraId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -119,10 +132,10 @@ namespace BlazorAlumnos.Server.Migrations
                 name: "Maestros");
 
             migrationBuilder.DropTable(
-                name: "Carreras");
+                name: "Materias");
 
             migrationBuilder.DropTable(
-                name: "Materias");
+                name: "Carreras");
         }
     }
 }

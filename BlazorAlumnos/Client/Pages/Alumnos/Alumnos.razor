@@ -1,4 +1,4 @@
-﻿@page "/alumnos"
+﻿ @page "/alumnos"
 @using BlazorAlumnos.Shared.DTOs.Alumnos;
 
 @inject HttpClient httpClient
@@ -31,6 +31,7 @@ else
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellido</th>
                     <th scope="col">Correo</th>
+                    <th scope="col">CarreraId</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,6 +43,7 @@ else
                         <td>@alumno.Nombre</td>
                         <td>@alumno.Apellido</td>
                         <td>@alumno.Correo</td>
+                        <td>@alumno.CarreraId</td>
 
                         <td>
                             <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"alumno/{alumno.Id}"))>Editar</button>

@@ -27,7 +27,7 @@ else
             <thead class="table-striped">
                 <tr>
                     <th scope="col">Id</th>
-                    <th scope="col">Nombre</th>
+                    <th scope="col">Nombre Materia</th>
                     <th scope="col">Opciones</th>
                 </tr>
             </thead>
@@ -40,6 +40,8 @@ else
 
                         <td>
                             <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"materia/{materia.Id}"))>Editar</button>
+                            <button class="btn btn-success" type="button" @onclick=@(() => navigationManager.NavigateTo($"agregaralumno/{materia.Id}"))>Agregar Alumno</button>
+                            <button class="btn btn-success" type="button" @onclick=@(() => navigationManager.NavigateTo($"agregarmaestro/{materia.Id}"))>Agregar Maestro</button>
                             <button class="btn btn-danger" type="button" @onclick="@(() => Eliminar(materia))">Eliminar</button>
                         </td>
                     </tr>

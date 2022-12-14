@@ -1,5 +1,69 @@
-﻿<h3>Carreras</h3>
+﻿@page "/carreras"
+@using BlazorAlumnos.Shared.DTOs.Carreras;
+
+@inject HttpClient httpClient
+@inject NavigationManager navigationManager
+
+<h3>Carreras</h3>
+
+<div class="row justify-content-end">
+    <div class="col-lg-3 text-end">
+        <button type="button" class="btn btn-success" @onclick=@(() => navigationManager.NavigateTo("carrera"))>Agregar</button>
+    </div>
+</div>
+
+@if (carreras == null)
+{
+    <h1>Cargando...</h1>
+}
+else if (carreras.Count == 0)
+{
+    <h1>No se encontraron Carreras registrados...</h1>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table text-center table-hover">
+            <thead class="table-striped">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre Carrera</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var carrera in carreras)
+                {
+                    <tr>
+                        <td>@carrera.Id</td>
+                        <td>@carrera.Nombre</td>
+                        <td>
+                            <button class="btn btn-primary" type="button" @onclick=@(() => navigationManager.NavigateTo($"carrera/{carrera.Id}"))>Editar</button>
+                            <button class="btn btn-danger" type="button" @onclick="@(() => Eliminar(carrera))">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
 
 @code {
+    protected List<CarreraDTO> carreras;
 
+    protected override async Task OnInitializedAsync()
+    {
+
+        var response = await httpClient.GetFromJsonAsync<List<CarreraDTO>>("api/carreraz");
+        if (response != null)
+        {
+            carreras = response;
+        }
+    }
+
+    protected async Task Eliminar(CarreraDTO carrera)
+    {
+        await httpClient.DeleteAsync($"api/carreraz/{carrera.Id}");
+        carreras.Remove(carrera);
+    }
 }

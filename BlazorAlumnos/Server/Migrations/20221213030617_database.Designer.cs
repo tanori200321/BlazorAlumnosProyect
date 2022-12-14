@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorAlumnos.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221212152914_database")]
+    [Migration("20221213030617_database")]
     partial class database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
